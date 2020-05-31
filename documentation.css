@@ -1,0 +1,25 @@
+/*reset css*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/*set colors*/
+
+:root {
+    --color--green: #026e00;
+    --color--black: #333;
+    --color--gray: #f0f0f0;
+    --color--white: #fff;
+}
