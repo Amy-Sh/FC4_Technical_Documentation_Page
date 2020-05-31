@@ -34,11 +34,60 @@
     <main id="main-doc">
         <section class="main-section" id="A_high-level_definition">
             <header>A high-level definition</header>
-            <article></article>
+            <article>
+                <p>JavaScript is a scripting or programming language that allows you to implement complex features on web pages — every time a web page does more than just sit there and display static information for you to look at — displaying timely content
+                    updates, interactive maps, animated 2D/3D graphics, scrolling video jukeboxes, etc. — you can bet that JavaScript is probably involved. It is the third layer of the layer cake of standard web technologies, two of which (<a href="https://developer.mozilla.org/en-US/docs/Learn/HTML">HTML</a>and
+                    <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS">CSS</a>) we have covered in much more detail in other parts of the Learning Area.</p>
+                <ul>
+                    <li>HTML is the markup language that we use to structure and give meaning to our web content, for example defining paragraphs, headings, and data tables, or embedding images and videos in the page.</li>
+                    <li>CSS is a language of style rules that we use to apply styling to our HTML content, for example setting background colors and fonts, and laying out our content in multiple columns.</li>
+                    <li>JavaScript is a scripting language that enables you to create dynamically updating content, control multimedia, animate images, and pretty much everything else. (Okay, not everything, but it is amazing what you can achieve with a few
+                        lines of JavaScript code.)</li>
+                </ul>
+                <p>The three layers build on top of one another nicely. Let's take a simple text label as an example. We can mark it up using HTML to give it structure and purpose:</p>
+                <pre><code>
+                    <span class="code">p</span>Player 1: Chris<span class="code">/p</span>
+                </code></pre>
+                <div class="browser">Player 1: Chris</div>
+                <p>Then we can add some CSS into the mix to get it looking nice:</p>
+                <pre><code>
+                    p {
+                        font-family: 'helvetica neue', helvetica, sans-serif;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        text-align: center;
+                        border: 2px solid rgba(0,0,200,0.6);
+                        background: rgba(0,0,200,0.3);
+                        color: rgba(0,0,200,0.6);
+                        box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+                        border-radius: 10px;
+                        padding: 3px 10px;
+                        display: inline-block;
+                        cursor: pointer;
+                    }
+                </code></pre>
+                <div class="browser">Player 1: Chris</div>
+                <p>And finally, we can add some JavaScript to implement dynamic behaviour:</p>
+                <pre><code>
+                    const para = document.querySelector('p');
+
+                    para.addEventListener('click', updateName);
+                        
+                    function updateName() {
+                        let name = prompt('Enter a new name');
+                        para.textContent = 'Player 1: ' + name;
+                    }
+                </code></pre>
+                <div class="browser">Player 1: None</div>
+                <p>Try clicking on this last version of the text label to see what happens.</p>
+                <p>JavaScript can do a lot more than that — let's explore what in more detail.</p>
+            </article>
         </section>
         <section class="main-section" id="So_what_can_it_really_do?">
             <header>So what can it really do?</header>
-            <article></article>
+            <article>
+                <p>The core client-side JavaScript language consists of some common programming features that allow you to do things like:</p>
+            </article>
         </section>
         <section class="main-section" id="What_is_Javascript_doing_on_your_page?">
             <header>What is Javascript doing on your page?</header>
@@ -54,7 +103,11 @@
         </section>
         <section class="main-section" id="Reference">
             <header>Reference</header>
-            <article></article>
+            <article>
+                <ul>
+                    <li>All the documentation in this page taken from <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript">MDN</a></li>
+                </ul>
+            </article>
         </section>
     </main>
 </body>
