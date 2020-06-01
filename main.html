@@ -89,7 +89,7 @@
                 <p>JavaScript can do a lot more than that — let's explore what in more detail.</p>
             </article>
         </section>
-        <section class="main-section" id="So_what_can_it_really_do?">
+        <section class="main-section" id="So_what_can_it_really_do">
             <header>So what can it really do?</header>
             <article>
                 <p>The core client-side JavaScript language consists of some common programming features that allow you to do things like:</p>
@@ -123,7 +123,7 @@
                     that's why you're here — let's move on!</p>
             </article>
         </section>
-        <section class="main-section" id="What_is_Javascript_doing_on_your_page?">
+        <section class="main-section" id="What_is_Javascript_doing_on_your_page">
             <header>What is Javascript doing on your page?</header>
             <article>
                 <p>Here we'll actually start looking at some code, and while doing so, explore what actually happens when you run some JavaScript in your page.</p>
@@ -180,7 +180,168 @@
         <section class="main-section" id="How_do_you_add_JavaScript_to_your_page?">
             <header>How do you add JavaScript to your page?</header>
             <article>
+                <p>JavaScript is applied to your HTML page in a similar manner to CSS. Whereas CSS uses <span class="code"><code>link</code></span> elements to apply external stylesheets and <span class="code"><code>style</code></span> elements to apply
+                    internal stylesheets to HTML, JavaScript only needs one friend in the world of HTML — the <span class="code"><code>script</code></span> element. Let's learn how this works.</p>
+                <h1></h1>
+                <ol>
+                    <li>First of all, make a local copy of our example file <a href="https://github.com/mdn/learning-area/blob/master/javascript/introduction-to-js-1/what-is-js/apply-javascript.html">apply-javascript.html</a>. Save it in a directory somewhere
+                        sensible.
+                    </li>
+                    <li>Open the file in your web browser and in your text editor. You'll see that the HTML creates a simple web page containing a clickable button.</li>
+                    <li>Next, go to your text editor and add the following in your head — just before your closing <span class="code"><code>/head</code></span> tag:
+                        <pre>
+                        <code>
+                            <span class="code">script</span>
 
+                                        // JavaScript goes here
+                                      
+                            <span class="code">/script</span> 
+                        </code>
+                        </pre>
+                    </li>
+                    <li>Now we'll add some JavaScript inside our <span class="code"><code>script</code></span> element to make the page do something more interesting — add the following code just below the "// JavaScript goes here" line:
+                        <pre>
+                        <code>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                function createParagraph() {
+                                    let para = document.createElement('p');
+                                    para.textContent = 'You clicked the button!';
+                                    document.body.appendChild(para);
+                                }
+                                  
+                                const buttons = document.querySelectorAll('button');
+                                  
+                                for(let i = 0; i < buttons.length ; i++) {
+                                    buttons[i].addEventListener('click', createParagraph);
+                                }
+                            });
+                        </code>
+                    </pre>
+                    </li>
+                    <li>Save your file and refresh the browser — now you should see that when you click the button, a new paragraph is generated and placed below.</li>
+                </ol>
+                <h1>External JavaScript</h1>
+                <p>This works great, but what if we wanted to put our JavaScript in an external file? Let's explore this now.</p>
+                <ol>
+                    <li>First, create a new file in the same directory as your sample HTML file. Call it <code>script.js</code> — make sure it has that .js filename extension, as that's how it is recognized as JavaScript.</li>
+                    <li>Replace your current <span class="code"><code>script</code></span> element with the following:
+                        <pre>
+                        <code>
+                            <span class="code">script src="script.js" defer</span><span class="code">/script</span>
+                        </code>
+                        </pre>
+                    </li>
+                    <li>Inside <code>script.js</code>, add the following script:
+                        <pre>
+                        <code>
+                            function createParagraph() {
+                                let para = document.createElement('p');
+                                para.textContent = 'You clicked the button!';
+                                document.body.appendChild(para);
+                            }
+                                  
+                            const buttons = document.querySelectorAll('button');
+                                  
+                            for(let i = 0; i < buttons.length ; i++) {
+                                buttons[i].addEventListener('click', createParagraph);
+                            }
+                        </code>
+                        </pre>
+                    </li>
+                    <li>Save and refresh your browser, and you should see the same thing! It works just the same, but now we've got our JavaScript in an external file. This is generally a good thing in terms of organizing your code and making it reusable
+                        across multiple HTML files. Plus, the HTML is easier to read without huge chunks of script dumped in it.</li>
+                </ol>
+                <h1>Inline JavaScript handlers</h1>
+                <p>Note that sometimes you'll come across bits of actual JavaScript code living inside HTML. It might look something like this:</p>
+                <pre class="wrong">
+                    <code>
+                        function createParagraph() {
+                            let para = document.createElement('p');
+                            para.textContent = 'You clicked the button!';
+                            document.body.appendChild(para);
+                        }
+                    </code>
+                </pre>
+                <pre class="wrong">
+                    <code>
+                        <span class="code">button onclick="createParagraph()"</span>Click me!<span class="code">/button</span>
+                    </code>
+                </pre>
+                <p>This code has exactly the same functionality as in the previous two sections, except that the <span class="code"><code>button</code></span> element includes an inline onclick handler to make the function run when the button is pressed.</p>
+                <p>Please don't do this, however. It is bad practice to pollute your HTML with JavaScript, and it is inefficient — you'd have to include the <code>onclick="createParagraph()"</code> attribute on every button you want the JavaScript to apply
+                    to.
+                </p>
+                <p>Using a pure JavaScript construct allows you to select all the buttons using one instruction. The code we used above to serve this purpose looks like this:</p>
+                <pre>
+                    <code>
+                        const buttons = document.querySelectorAll('button');
+
+                        for(let i = 0; i < buttons.length ; i++) {
+                            buttons[i].addEventListener('click', createParagraph);
+                        }
+                    </code>
+                </pre>
+                <h1>Script loading strategies</h1>
+                <p>There are a number of issues involved with getting scripts to load at the right time. Nothing is as simple as it seems! A common problem is that all the HTML on a page is loaded in the order in which it appears. If you are using JavaScript
+                    to manipulate elements on the page, your code won't work if the JavaScript is loaded and parsed before the HTML you are trying to do something to.</p>
+                <p>In the above code examples, in the internal and external examples the JavaScript is loaded and run in the head of the document, before the HTML body is parsed. This could cause an error, so we've used some constructs to get around it.</p>
+                <p>In the internal example, you can see this structure around the code:</p>
+                <pre>
+                    <code>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            ...
+                        }); 
+                    </code>
+                </pre>
+                <p>This is an event listener, which listens for the browser's "DOMContentLoaded" event, which signifies that the HTML body is completely loaded and parsed. The JavaScript inside this block will not run until after that event is fired, therefore
+                    the error is avoided.</p>
+                <p>In the external example, we use a more modern JavaScript feature to solve the problem, the defer attribute, which tells the browser to continue downloading the HTML content once the <span class="code"><code>script</code></span> tag element
+                    has been reached.</p>
+                <pre>
+                    <code>
+                        <span class="code">script src="script.js" defer</span><span class="code">/script</span>
+                    </code>
+                </pre>
+                <p>In this case both the script and the HTML will load simultaneously and the code will work.</p>
+                <p>An old-fashioned solution to this problem used to be to put your script element right at the bottom of the body (e.g. just before the <span class="code"><code>/body</code></span> tag), so that it would load after all the HTML has been
+                    parsed. The problem with this solution is that loading/parsing of the script is completely blocked until the HTML DOM has been loaded. On larger sites with lots of JavaScript, this can cause a major performance issue, slowing down
+                    your site.</p>
+                <h2>async and defer</h2>
+                <p>There are actually two modern features we can use to bypass the problem of the blocking script — <code>async</code> and <code>defer</code> (which we saw above). Let's look at the difference between these two.</p>
+                <p>Scripts loaded using the <code>async</code> attribute (see below) will download the script without blocking rendering the page and will execute it as soon as the script finishes downloading. You get no guarantee that scripts will run in
+                    any specific order, only that they will not stop the rest of the page from displaying. It is best to use <code>async</code> when the scripts in the page run independently from each other and depend on no other script on the page.</p>
+                <p>For example, if you have the following script elements:</p>
+                <pre>
+                    <code>
+                        <span class="code">script async src="js/vendor/jquery.js"</span><span class="code">/script</span>
+
+                        <span class="code">script async src="js/script2.js"</span><span class="code">/script</span>
+                            
+                        <span class="code">script async src="js/script3.js"</span><span class="code">/script</span> 
+                    </code>
+                </pre>
+                <p>You can't rely on the order the scripts will load in. <code>jquery.js</code> may load before or after <code>script2.js</code> and <code>script3.js</code> and if this is the case, any functions in those scripts depending on <code>jquery</code>                    will produce an error because <code>jquery</code> will not be defined at the time the script runs.</p>
+                <p><code>async</code> should be used when you have a bunch of background scripts to load in, and you just want to get them in place asap. For example, maybe you have some game data files to load, which will be needed when the game actually
+                    begins, but for now you just want to get on with showing the game intro, titles, and lobby, without them being blocked by script loading.</p>
+                <p>Scripts loaded using the <code>defer</code> attribute (see below) will run in the order they appear in the page and execute them as soon as the script and content are downloaded:</p>
+                <pre>
+                    <code>
+                        <span class="code">script defer src="js/vendor/jquery.js"</span><span class="code">/script</span>
+    
+                        <span class="code">script defer src="js/script2.js"</span><span class="code">/script</span>
+                                
+                        <span class="code">script defer src="js/script3.js"</span><span class="code">/script</span> 
+                    </code>
+                </pre>
+                <p>All the scripts with the <code>defer</code> attribute will load in the order they appear on the page. So in the second example, we can be sure that <code>jquery.js</code> will load before <code>script2.js</code> and <code>script3.js</code>                    and that <code>script2.js</code> will load before <code>script3.js</code>. They won't run until the page content has all loaded, which is useful if your scripts depend on the DOM being in place (e.g. they modify one of more elements
+                    on the page).</p>
+                <p>To summarize:</p>
+                <ul>
+                    <li><code>async</code> and <code>defer</code> both instruct the browser to download the script(s) in a separate thread, while the rest of the page (the DOM, etc.) is downloading, so the page loading is not blocked by the scripts.</li>
+                    <li>If your scripts should be run immediately and they don't have any dependencies, then use <code>async</code>.</li>
+                    <li>If your scripts need to wait for parsing and depend on other scripts and/or the DOM being in place, load them using <code>defer</code> and put their corresponding <span class="code"><code>script</code></span> elements in the order
+                        you want the browser to execute them.</li>
+                </ul>
             </article>
         </section>
         <section class="main-section" id="Comments">
