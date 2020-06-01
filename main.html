@@ -45,39 +45,45 @@
                         lines of JavaScript code.)</li>
                 </ul>
                 <p>The three layers build on top of one another nicely. Let's take a simple text label as an example. We can mark it up using HTML to give it structure and purpose:</p>
-                <pre><code>
-                    <span class="code">p</span>Player 1: Chris<span class="code">/p</span>
-                </code></pre>
+                <pre>
+                    <code>
+                        <span class="code">p</span>Player 1: Chris<span class="code">/p</span>
+                    </code>
+                </pre>
                 <div class="browser">Player 1: Chris</div>
                 <p>Then we can add some CSS into the mix to get it looking nice:</p>
-                <pre><code>
-                    p {
-                        font-family: 'helvetica neue', helvetica, sans-serif;
-                        letter-spacing: 1px;
-                        text-transform: uppercase;
-                        text-align: center;
-                        border: 2px solid rgba(0,0,200,0.6);
-                        background: rgba(0,0,200,0.3);
-                        color: rgba(0,0,200,0.6);
-                        box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
-                        border-radius: 10px;
-                        padding: 3px 10px;
-                        display: inline-block;
-                        cursor: pointer;
-                    }
-                </code></pre>
+                <pre>
+                    <code>
+                        p {
+                            font-family: 'helvetica neue', helvetica, sans-serif;
+                            letter-spacing: 1px;
+                            text-transform: uppercase;
+                            text-align: center;
+                            border: 2px solid rgba(0,0,200,0.6);
+                            background: rgba(0,0,200,0.3);
+                            color: rgba(0,0,200,0.6);
+                            box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+                            border-radius: 10px;
+                            padding: 3px 10px;
+                            display: inline-block;
+                            cursor: pointer;
+                        }
+                    </code>
+                </pre>
                 <div class="browser">Player 1: Chris</div>
                 <p>And finally, we can add some JavaScript to implement dynamic behaviour:</p>
-                <pre><code>
-                    const para = document.querySelector('p');
+                <pre>
+                    <code>
+                        const para = document.querySelector('p');
 
-                    para.addEventListener('click', updateName);
+                        para.addEventListener('click', updateName);
                         
-                    function updateName() {
-                        let name = prompt('Enter a new name');
-                        para.textContent = 'Player 1: ' + name;
-                    }
-                </code></pre>
+                        function updateName() {
+                            let name = prompt('Enter a new name');
+                            para.textContent = 'Player 1: ' + name;
+                        }
+                    </code>
+                </pre>
                 <div class="browser">Player 1: None</div>
                 <p>Try clicking on this last version of the text label to see what happens.</p>
                 <p>JavaScript can do a lot more than that — let's explore what in more detail.</p>
@@ -119,11 +125,63 @@
         </section>
         <section class="main-section" id="What_is_Javascript_doing_on_your_page?">
             <header>What is Javascript doing on your page?</header>
-            <article></article>
+            <article>
+                <p>Here we'll actually start looking at some code, and while doing so, explore what actually happens when you run some JavaScript in your page.</p>
+                <p>Let's briefly recap the story of what happens when you load a web page in a browser. When you load a web page in your browser, you are running your code (the HTML, CSS, and JavaScript) inside an execution environment (the browser tab).
+                    This is like a factory that takes in raw materials (the code) and outputs a product (the web page).
+                </p>
+                <p>A very common use of JavaScript is to dynamically modify HTML and CSS to update a user interface, via the Document Object Model API (as mentioned above). Note that the code in your web documents is generally loaded and executed in the
+                    order it appears on the page. If the JavaScript loads and tries to run before the HTML and CSS it is affecting has been loaded, errors can occur. </p>
+                <h1>Browser Security</h1>
+                <p>Each browser tab has its own separate bucket for running code in (these buckets are called "execution environments" in technical terms) — this means that in most cases the code in each tab is run completely separately, and the code in
+                    one tab cannot directly affect the code in another tab — or on another website. This is a good security measure — if this were not the case, then pirates could start writing code to steal information from other websites, and other
+                    such bad things.</p>
+                <h1>JavaScript running order</h1>
+                <p>When the browser encounters a block of JavaScript, it generally runs it in order, from top to bottom. This means that you need to be careful what order you put things in. For example, let's return to the block of JavaScript we saw in our
+                    first example:</p>
+                <pre>
+                        <code>
+                            const para = document.querySelector('p');
+    
+                            para.addEventListener('click', updateName);
+                                
+                            function updateName() {
+                                let name = prompt('Enter a new name');
+                                para.textContent = 'Player 1: ' + name;
+                            } 
+                        </code>
+                    </pre>
+                <p>Here we are selecting a text paragraph (line 1), then attaching an event listener to it (line 3) so that when the paragraph is clicked, the <code>updateName()</code> code block (lines 5–8) is run. The <code>updateName()</code> code block
+                    (these types of reusable code blocks are called "functions") asks the user for a new name, and then inserts that name into the paragraph to update the display.</p>
+                <p>If you swapped the order of the first two lines of code, it would no longer work — instead, you'd get an error returned in the browser developer console — <samp>TypeError: para is undefined</samp>. This means that the para object does
+                    not exist yet, so we can't add an event listener to it.</p>
+                <h1>Interpreted versus compiled code</h1>
+                <p>You might hear the terms interpreted and compiled in the context of programming. In interpreted languages, the code is run from top to bottom and the result of running the code is immediately returned. You don't have to transform the code
+                    into a different form before the browser runs it. The code is received in its programmer-friendly text form and processed directly from that.</p>
+                <p>Compiled languages on the other hand are transformed (compiled) into another form before they are run by the computer. For example, C/C++ are compiled into assembly language that is then run by the computer. The program is executed from
+                    a binary format, which was generated from the original program source code.</p>
+                <p>JavaScript is a lightweight interpreted programming language. The web browser receives the JavaScript code in its original text form and runs the script from that. From a technical standpoint, most modern JavaScript interpreters actually
+                    use a technique called just-in-time compiling to improve performance; the JavaScript source code gets compiled into a faster, binary format while the script is being used, so that it can be run as quickly as possible. However, JavaScript
+                    is still considered an interpreted language, since the compilation is handled at run time, rather than ahead of time.</p>
+                <p>There are advantages to both types of language, but we won't discuss them right now.</p>
+                <h1>Server-side versus client-side code</h1>
+                <p>You might also hear the terms server-side and client-side code, especially in the context of web development. Client-side code is code that is run on the user's computer — when a web page is viewed, the page's client-side code is downloaded,
+                    then run and displayed by the browser. In this module we are explicitly talking about client-side JavaScript.</p>
+                <p>Server-side code on the other hand is run on the server, then its results are downloaded and displayed in the browser. Examples of popular server-side web languages include PHP, Python, Ruby, ASP.NET and... JavaScript! JavaScript can also
+                    be used as a server-side language, for example in the popular Node.js environment.</p>
+                <h1>Dynamic versus static code</h1>
+                <p>The word dynamic is used to describe both client-side JavaScript, and server-side languages — it refers to the ability to update the display of a web page/app to show different things in different circumstances, generating new content
+                    as required. Server-side code dynamically generates new content on the server, e.g. pulling data from a database, whereas client-side JavaScript dynamically generates new content inside the browser on the client, e.g. creating a new
+                    HTML table, filling it with data requested from the server, then displaying the table in a web page shown to the user. The meaning is slightly different in the two contexts, but related, and both approaches (server-side and client-side)
+                    usually work together.</p>
+                <p>A web page with no dynamically updating content is referred to as static — it just shows the same content all the time.</p>
+            </article>
         </section>
         <section class="main-section" id="How_do_you_add_JavaScript_to_your_page?">
             <header>How do you add JavaScript to your page?</header>
-            <article></article>
+            <article>
+
+            </article>
         </section>
         <section class="main-section" id="Comments">
             <header>Comments</header>
