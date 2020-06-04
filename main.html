@@ -346,7 +346,52 @@
         </section>
         <section class="main-section" id="Comments">
             <header>Comments</header>
-            <article></article>
+            <article>
+                <p>As with HTML and CSS, it is possible to write comments into your JavaScript code that will be ignored by the browser, and exist simply to provide instructions to your fellow developers on how the code works (and you, if you come back to
+                    your code after six months and can't remember what you did). Comments are very useful, and you should use them often, particularly for larger applications. There are two types:</p>
+                <ul>
+                    <li>A single line comment is written after a double forward slash (//), e.g.
+                        <pre>
+                        <code>// I am a comment</code>
+                        </pre>
+                    </li>
+                    <li>A multi-line comment is written between the strings /* and */, e.g.
+                        <pre>
+                        <code>
+                        /*
+                            I am also
+                            a comment
+                        */
+                        </code>
+                        </pre>
+                    </li>
+                </ul>
+                <p>So for example, we could annotate our last demo's JavaScript with comments like so:</p>
+                <pre>
+                    <code>
+                        // Function: creates a new paragraph and appends it to the bottom of the HTML body.
+
+                        function createParagraph() {
+                            let para = document.createElement('p');
+                            para.textContent = 'You clicked the button!';
+                            document.body.appendChild(para);
+                        }
+                            
+                        /*
+                            1. Get references to all the buttons on the page in an array format.
+                            2. Loop through all the buttons and add a click event listener to each one.
+                            
+                            When any button is pressed, the createParagraph() function will be run.
+                        */
+                            
+                        const buttons = document.querySelectorAll('button');
+                            
+                        for (let i = 0; i < buttons.length ; i++) {
+                            buttons[i].addEventListener('click', createParagraph);
+                        }
+                    </code>
+                </pre>
+            </article>
         </section>
         <section class="main-section" id="Reference">
             <header>Reference</header>
