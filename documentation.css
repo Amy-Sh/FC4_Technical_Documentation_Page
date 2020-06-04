@@ -38,10 +38,41 @@ header {
 
 /*navigation*/
 
-#nav-bar>header {
+#navbar header {
     font-size: 300%;
     background-color: var(--color--black);
     color: var(--color--white);
+    padding-left: 5px;
+}
+
+#navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 290px;
+}
+
+#navbar li {
+    line-height: 2em;
+}
+
+.nav-link {
+    color: var(--color--green);
+    display: block;
+    padding-left: 5px;
+}
+
+.nav-link:hover {
+    color: var(--color--white);
+    background-color: var(--color--green);
+    transition: .4s;
+}
+
+
+/*body*/
+
+#main-doc {
+    margin-left: 310px;
 }
 
 
