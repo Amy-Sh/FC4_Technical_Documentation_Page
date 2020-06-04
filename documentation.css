@@ -1,13 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro&display=swap');
+
 /*reset css*/
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-li {
-    list-style: none;
 }
 
 a {
@@ -22,4 +20,37 @@ a {
     --color--black: #333;
     --color--gray: #f0f0f0;
     --color--white: #fff;
+}
+
+
+/*set fonts*/
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 19px;
+}
+
+header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 180%;
+}
+
+
+/*navigation*/
+
+#nav-bar>header {
+    font-size: 300%;
+    background-color: var(--color--black);
+    color: var(--color--white);
+}
+
+
+/*code signs*/
+
+.code::before {
+    content: "\03c";
+}
+
+.code::after {
+    content: "\03e";
 }
