@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <nav id="nav-bar">
+    <nav id="navbar">
         <header>What is Javascript?</header>
         <ul>
             <li>
@@ -45,45 +45,39 @@
                         lines of JavaScript code.)</li>
                 </ul>
                 <p>The three layers build on top of one another nicely. Let's take a simple text label as an example. We can mark it up using HTML to give it structure and purpose:</p>
-                <pre>
-                    <code>
-                        <span class="code">p</span>Player 1: Chris<span class="code">/p</span>
-                    </code>
-                </pre>
+                <pre><code><span class="code">p</span>Player 1: Chris<span class="code">/p</span></code></pre>
                 <div class="browser">Player 1: Chris</div>
                 <p>Then we can add some CSS into the mix to get it looking nice:</p>
                 <pre>
                     <code>
-                        p {
-                            font-family: 'helvetica neue', helvetica, sans-serif;
-                            letter-spacing: 1px;
-                            text-transform: uppercase;
-                            text-align: center;
-                            border: 2px solid rgba(0,0,200,0.6);
-                            background: rgba(0,0,200,0.3);
-                            color: rgba(0,0,200,0.6);
-                            box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
-                            border-radius: 10px;
-                            padding: 3px 10px;
-                            display: inline-block;
-                            cursor: pointer;
-                        }
-                    </code>
-                </pre>
+p {
+    font-family: 'helvetica neue', helvetica, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    border: 2px solid rgba(0,0,200,0.6);
+    background: rgba(0,0,200,0.3);
+    color: rgba(0,0,200,0.6);
+    box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+    border-radius: 10px;
+    padding: 3px 10px;
+    display: inline-block;
+    cursor: pointer;
+}
+                    </code></pre>
                 <div class="browser">Player 1: Chris</div>
                 <p>And finally, we can add some JavaScript to implement dynamic behaviour:</p>
                 <pre>
                     <code>
-                        const para = document.querySelector('p');
+const para = document.querySelector('p');
 
-                        para.addEventListener('click', updateName);
+para.addEventListener('click', updateName);
                         
-                        function updateName() {
-                            let name = prompt('Enter a new name');
-                            para.textContent = 'Player 1: ' + name;
-                        }
-                    </code>
-                </pre>
+function updateName() {
+    let name = prompt('Enter a new name');
+    para.textContent = 'Player 1: ' + name;
+}
+                    </code></pre>
                 <div class="browser">Player 1: None</div>
                 <p>Try clicking on this last version of the text label to see what happens.</p>
                 <p>JavaScript can do a lot more than that — let's explore what in more detail.</p>
@@ -141,16 +135,15 @@
                     first example:</p>
                 <pre>
                         <code>
-                            const para = document.querySelector('p');
+const para = document.querySelector('p');
     
-                            para.addEventListener('click', updateName);
+para.addEventListener('click', updateName);
                                 
-                            function updateName() {
-                                let name = prompt('Enter a new name');
-                                para.textContent = 'Player 1: ' + name;
-                            } 
-                        </code>
-                    </pre>
+function updateName() {
+    let name = prompt('Enter a new name');
+    para.textContent = 'Player 1: ' + name;
+} 
+                        </code></pre>
                 <p>Here we are selecting a text paragraph (line 1), then attaching an event listener to it (line 3) so that when the paragraph is clicked, the <code>updateName()</code> code block (lines 5–8) is run. The <code>updateName()</code> code block
                     (these types of reusable code blocks are called "functions") asks the user for a new name, and then inserts that name into the paragraph to update the display.</p>
                 <p>If you swapped the order of the first two lines of code, it would no longer work — instead, you'd get an error returned in the browser developer console — <samp>TypeError: para is undefined</samp>. This means that the para object does
@@ -191,32 +184,30 @@
                     <li>Next, go to your text editor and add the following in your head — just before your closing <span class="code"><code>/head</code></span> tag:
                         <pre>
                         <code>
-                            <span class="code">script</span>
+<span class="code">script</span>
 
-                                        // JavaScript goes here
+// JavaScript goes here
                                       
-                            <span class="code">/script</span> 
-                        </code>
-                        </pre>
+<span class="code">/script</span> 
+                        </code></pre>
                     </li>
                     <li>Now we'll add some JavaScript inside our <span class="code"><code>script</code></span> element to make the page do something more interesting — add the following code just below the "// JavaScript goes here" line:
                         <pre>
                         <code>
-                            document.addEventListener("DOMContentLoaded", function() {
-                                function createParagraph() {
-                                    let para = document.createElement('p');
-                                    para.textContent = 'You clicked the button!';
-                                    document.body.appendChild(para);
-                                }
+document.addEventListener("DOMContentLoaded", function() {
+    function createParagraph() {
+        let para = document.createElement('p');
+        para.textContent = 'You clicked the button!';
+        document.body.appendChild(para);
+    }
                                   
-                                const buttons = document.querySelectorAll('button');
+    const buttons = document.querySelectorAll('button');
                                   
-                                for(let i = 0; i < buttons.length ; i++) {
-                                    buttons[i].addEventListener('click', createParagraph);
-                                }
-                            });
-                        </code>
-                    </pre>
+    for(let i = 0; i < buttons.length ; i++) {
+        buttons[i].addEventListener('click', createParagraph);
+    }
+});
+                        </code></pre>
                     </li>
                     <li>Save your file and refresh the browser — now you should see that when you click the button, a new paragraph is generated and placed below.</li>
                 </ol>
@@ -227,26 +218,24 @@
                     <li>Replace your current <span class="code"><code>script</code></span> element with the following:
                         <pre>
                         <code>
-                            <span class="code">script src="script.js" defer</span><span class="code">/script</span>
-                        </code>
-                        </pre>
+<span class="code">script src="script.js" defer</span><span class="code">/script</span>
+                        </code></pre>
                     </li>
                     <li>Inside <code>script.js</code>, add the following script:
                         <pre>
                         <code>
-                            function createParagraph() {
-                                let para = document.createElement('p');
-                                para.textContent = 'You clicked the button!';
-                                document.body.appendChild(para);
-                            }
+function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'You clicked the button!';
+    document.body.appendChild(para);
+}
                                   
-                            const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button');
                                   
-                            for(let i = 0; i < buttons.length ; i++) {
-                                buttons[i].addEventListener('click', createParagraph);
-                            }
-                        </code>
-                        </pre>
+for(let i = 0; i < buttons.length ; i++) {
+    buttons[i].addEventListener('click', createParagraph);
+}
+                        </code></pre>
                     </li>
                     <li>Save and refresh your browser, and you should see the same thing! It works just the same, but now we've got our JavaScript in an external file. This is generally a good thing in terms of organizing your code and making it reusable
                         across multiple HTML files. Plus, the HTML is easier to read without huge chunks of script dumped in it.</li>
@@ -255,18 +244,16 @@
                 <p>Note that sometimes you'll come across bits of actual JavaScript code living inside HTML. It might look something like this:</p>
                 <pre class="wrong">
                     <code>
-                        function createParagraph() {
-                            let para = document.createElement('p');
-                            para.textContent = 'You clicked the button!';
-                            document.body.appendChild(para);
-                        }
-                    </code>
-                </pre>
+function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'You clicked the button!';
+    document.body.appendChild(para);
+}
+                    </code></pre>
                 <pre class="wrong">
                     <code>
-                        <span class="code">button onclick="createParagraph()"</span>Click me!<span class="code">/button</span>
-                    </code>
-                </pre>
+<span class="code">button onclick="createParagraph()"</span>Click me!<span class="code">/button</span>
+                    </code></pre>
                 <p>This code has exactly the same functionality as in the previous two sections, except that the <span class="code"><code>button</code></span> element includes an inline onclick handler to make the function run when the button is pressed.</p>
                 <p>Please don't do this, however. It is bad practice to pollute your HTML with JavaScript, and it is inefficient — you'd have to include the <code>onclick="createParagraph()"</code> attribute on every button you want the JavaScript to apply
                     to.
@@ -274,13 +261,12 @@
                 <p>Using a pure JavaScript construct allows you to select all the buttons using one instruction. The code we used above to serve this purpose looks like this:</p>
                 <pre>
                     <code>
-                        const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button');
 
-                        for(let i = 0; i < buttons.length ; i++) {
-                            buttons[i].addEventListener('click', createParagraph);
-                        }
-                    </code>
-                </pre>
+for(let i = 0; i < buttons.length ; i++) {
+    buttons[i].addEventListener('click', createParagraph);
+}
+                    </code></pre>
                 <h1>Script loading strategies</h1>
                 <p>There are a number of issues involved with getting scripts to load at the right time. Nothing is as simple as it seems! A common problem is that all the HTML on a page is loaded in the order in which it appears. If you are using JavaScript
                     to manipulate elements on the page, your code won't work if the JavaScript is loaded and parsed before the HTML you are trying to do something to.</p>
@@ -288,20 +274,18 @@
                 <p>In the internal example, you can see this structure around the code:</p>
                 <pre>
                     <code>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            ...
-                        }); 
-                    </code>
-                </pre>
+document.addEventListener("DOMContentLoaded", function() {
+    ...
+}); 
+                    </code></pre>
                 <p>This is an event listener, which listens for the browser's "DOMContentLoaded" event, which signifies that the HTML body is completely loaded and parsed. The JavaScript inside this block will not run until after that event is fired, therefore
                     the error is avoided.</p>
                 <p>In the external example, we use a more modern JavaScript feature to solve the problem, the defer attribute, which tells the browser to continue downloading the HTML content once the <span class="code"><code>script</code></span> tag element
                     has been reached.</p>
                 <pre>
                     <code>
-                        <span class="code">script src="script.js" defer</span><span class="code">/script</span>
-                    </code>
-                </pre>
+<span class="code">script src="script.js" defer</span><span class="code">/script</span>
+                    </code></pre>
                 <p>In this case both the script and the HTML will load simultaneously and the code will work.</p>
                 <p>An old-fashioned solution to this problem used to be to put your script element right at the bottom of the body (e.g. just before the <span class="code"><code>/body</code></span> tag), so that it would load after all the HTML has been
                     parsed. The problem with this solution is that loading/parsing of the script is completely blocked until the HTML DOM has been loaded. On larger sites with lots of JavaScript, this can cause a major performance issue, slowing down
@@ -313,26 +297,24 @@
                 <p>For example, if you have the following script elements:</p>
                 <pre>
                     <code>
-                        <span class="code">script async src="js/vendor/jquery.js"</span><span class="code">/script</span>
+<span class="code">script async src="js/vendor/jquery.js"</span><span class="code">/script</span>
 
-                        <span class="code">script async src="js/script2.js"</span><span class="code">/script</span>
+<span class="code">script async src="js/script2.js"</span><span class="code">/script</span>
                             
-                        <span class="code">script async src="js/script3.js"</span><span class="code">/script</span> 
-                    </code>
-                </pre>
+<span class="code">script async src="js/script3.js"</span><span class="code">/script</span> 
+                    </code></pre>
                 <p>You can't rely on the order the scripts will load in. <code>jquery.js</code> may load before or after <code>script2.js</code> and <code>script3.js</code> and if this is the case, any functions in those scripts depending on <code>jquery</code>                    will produce an error because <code>jquery</code> will not be defined at the time the script runs.</p>
                 <p><code>async</code> should be used when you have a bunch of background scripts to load in, and you just want to get them in place asap. For example, maybe you have some game data files to load, which will be needed when the game actually
                     begins, but for now you just want to get on with showing the game intro, titles, and lobby, without them being blocked by script loading.</p>
                 <p>Scripts loaded using the <code>defer</code> attribute (see below) will run in the order they appear in the page and execute them as soon as the script and content are downloaded:</p>
                 <pre>
                     <code>
-                        <span class="code">script defer src="js/vendor/jquery.js"</span><span class="code">/script</span>
+<span class="code">script defer src="js/vendor/jquery.js"</span><span class="code">/script</span>
     
-                        <span class="code">script defer src="js/script2.js"</span><span class="code">/script</span>
+<span class="code">script defer src="js/script2.js"</span><span class="code">/script</span>
                                 
-                        <span class="code">script defer src="js/script3.js"</span><span class="code">/script</span> 
-                    </code>
-                </pre>
+<span class="code">script defer src="js/script3.js"</span><span class="code">/script</span> 
+                    </code></pre>
                 <p>All the scripts with the <code>defer</code> attribute will load in the order they appear on the page. So in the second example, we can be sure that <code>jquery.js</code> will load before <code>script2.js</code> and <code>script3.js</code>                    and that <code>script2.js</code> will load before <code>script3.js</code>. They won't run until the page content has all loaded, which is useful if your scripts depend on the DOM being in place (e.g. they modify one of more elements
                     on the page).</p>
                 <p>To summarize:</p>
@@ -351,46 +333,42 @@
                     your code after six months and can't remember what you did). Comments are very useful, and you should use them often, particularly for larger applications. There are two types:</p>
                 <ul>
                     <li>A single line comment is written after a double forward slash (//), e.g.
-                        <pre>
-                        <code>// I am a comment</code>
-                        </pre>
+                        <pre><code>// I am a comment</code></pre>
                     </li>
                     <li>A multi-line comment is written between the strings /* and */, e.g.
                         <pre>
                         <code>
-                        /*
-                            I am also
-                            a comment
-                        */
-                        </code>
-                        </pre>
+/*
+    I am also
+    a comment
+*/
+                        </code></pre>
                     </li>
                 </ul>
                 <p>So for example, we could annotate our last demo's JavaScript with comments like so:</p>
                 <pre>
                     <code>
-                        // Function: creates a new paragraph and appends it to the bottom of the HTML body.
+// Function: creates a new paragraph and appends it to the bottom of the HTML body.
 
-                        function createParagraph() {
-                            let para = document.createElement('p');
-                            para.textContent = 'You clicked the button!';
-                            document.body.appendChild(para);
-                        }
+function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'You clicked the button!';
+    document.body.appendChild(para);
+}
                             
-                        /*
-                            1. Get references to all the buttons on the page in an array format.
-                            2. Loop through all the buttons and add a click event listener to each one.
+/*
+    1. Get references to all the buttons on the page in an array format.
+    2. Loop through all the buttons and add a click event listener to each one.
                             
-                            When any button is pressed, the createParagraph() function will be run.
-                        */
+    When any button is pressed, the createParagraph() function will be run.
+*/
                             
-                        const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button');
                             
-                        for (let i = 0; i < buttons.length ; i++) {
-                            buttons[i].addEventListener('click', createParagraph);
-                        }
-                    </code>
-                </pre>
+for (let i = 0; i < buttons.length ; i++) {
+    buttons[i].addEventListener('click', createParagraph);
+}
+                    </code></pre>
             </article>
         </section>
         <section class="main-section" id="Reference">
