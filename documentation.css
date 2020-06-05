@@ -20,6 +20,8 @@ a {
     --color--black: #333;
     --color--gray: #f0f0f0;
     --color--white: #fff;
+    --color--backred: #fef7f7;
+    --color--red: #e66465;
 }
 
 
@@ -39,17 +41,18 @@ header {
 /*navigation*/
 
 #navbar header {
-    font-size: 300%;
+    font-size: 280%;
     background-color: var(--color--black);
     color: var(--color--white);
-    padding-left: 5px;
+    padding: 8px;
+    letter-spacing: .03em;
 }
 
 #navbar {
     position: fixed;
     top: 0px;
     left: 0px;
-    width: 290px;
+    width: 295px;
 }
 
 #navbar li {
@@ -59,7 +62,8 @@ header {
 .nav-link {
     color: var(--color--green);
     display: block;
-    padding-left: 5px;
+    padding-left: 8px;
+    font-size: 85%;
 }
 
 .nav-link:hover {
@@ -69,10 +73,59 @@ header {
 }
 
 
-/*body*/
+/*main*/
 
 #main-doc {
-    margin-left: 310px;
+    margin-left: 350px;
+    max-width: 800px;
+}
+
+#main-doc p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.main-section ul {
+    display: block;
+    list-style: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.main-section ol {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+pre {
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 5px;
+    background: var(--color--black);
+    color: var(--color--white);
+    overflow-x: auto;
+    --webkit-overflow-scrolling: touch;
+}
+
+code {
+    text-align: left;
+    white-space: pre;
+}
+
+.wrong {
+    background: var(--color--backred);
+    color: var(--color--black);
+    border-left: 3px solid var(--color--red);
 }
 
 
