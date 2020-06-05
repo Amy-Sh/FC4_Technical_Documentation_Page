@@ -37,6 +37,16 @@ header {
     font-size: 180%;
 }
 
+h1 {
+    font-size: 1.5em;
+    border-left: solid 5px var(--color--black);
+    padding-left: 5px;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
 
 /*navigation*/
 
@@ -77,6 +87,7 @@ header {
 
 #main-doc {
     margin-left: 350px;
+    min-width: ;
     max-width: 800px;
 }
 
@@ -86,6 +97,14 @@ header {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+
+p code {
+    background-color: var(--color--gray);
+}
+
+.main-section header {
+    line-height: 2em;
 }
 
 .main-section ul {
@@ -105,6 +124,16 @@ header {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
+}
+
+.main-section a {
+    color: var(--color--green);
+    transition: .3s;
+}
+
+.main-section a:hover {
+    color: var(--color--white);
+    background-color: var(--color--green);
 }
 
 pre {
@@ -131,10 +160,41 @@ code {
 
 /*code signs*/
 
-.code::before {
+p .code::before {
     content: "\03c";
+    background-color: var(--color--gray);
 }
 
-.code::after {
+p .code::after {
     content: "\03e";
+    background-color: var(--color--gray);
+}
+
+pre .code::before {
+    content: "\03c";
+    color: var(--color--white);
+}
+
+pre .code::after {
+    content: "\03e";
+    color: var(--color--white);
+}
+
+
+/*for tablet*/
+
+@media only screen and (max-width:815px) {
+    body {
+        font-size: 18px;
+    }
+    #navbar {
+        width: 200px;
+    }
+    #navbar header {
+        font-size: 200%;
+        padding: 8px;
+    }
+    #main-doc {
+        margin-left: 220px;
+    }
 }
