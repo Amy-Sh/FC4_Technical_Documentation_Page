@@ -15,10 +15,10 @@
                 <a href="#A_high-level_definition" class="nav-link">A high-level definition</a>
             </li>
             <li>
-                <a href="#So_what_can_it_really_do" class="nav-link">So what can it really do?</a>
+                <a href="#So_what_can_it_really_do?" class="nav-link">So what can it really do?</a>
             </li>
             <li>
-                <a href="#What_is_Javascript_doing_on_your_page" class="nav-link">What is Javascript doing on your page?</a>
+                <a href="#What_is_Javascript_doing_on_your_page?" class="nav-link">What is Javascript doing on your page?</a>
             </li>
             <li>
                 <a href="#How_do_you_add_JavaScript_to_your_page?" class="nav-link">How do you add JavaScript to your page?</a>
@@ -46,7 +46,7 @@
                 </ul>
                 <p>The three layers build on top of one another nicely. Let's take a simple text label as an example. We can mark it up using HTML to give it structure and purpose:</p>
                 <pre><code><span class="code">p</span>Player 1: Chris<span class="code">/p</span></code></pre>
-                <div class="browser">Player 1: Chris</div>
+                <div>Player 1: Chris</div>
                 <p>Then we can add some CSS into the mix to get it looking nice:</p>
                 <pre>
                     <code>
@@ -78,12 +78,12 @@ function updateName() {
     para.textContent = 'Player 1: ' + name;
 }
                     </code></pre>
-                <div class="browser">Player 1: None</div>
+                <div class="browser" id="test">Player 1: None</div>
                 <p>Try clicking on this last version of the text label to see what happens.</p>
                 <p>JavaScript can do a lot more than that — let's explore what in more detail.</p>
             </article>
         </section>
-        <section class="main-section" id="So_what_can_it_really_do">
+        <section class="main-section" id="So_what_can_it_really_do?">
             <header>So what can it really do?</header>
             <article>
                 <p>The core client-side JavaScript language consists of some common programming features that allow you to do things like:</p>
@@ -117,7 +117,7 @@ function updateName() {
                     that's why you're here — let's move on!</p>
             </article>
         </section>
-        <section class="main-section" id="What_is_Javascript_doing_on_your_page">
+        <section class="main-section" id="What_is_Javascript_doing_on_your_page?">
             <header>What is Javascript doing on your page?</header>
             <article>
                 <p>Here we'll actually start looking at some code, and while doing so, explore what actually happens when you run some JavaScript in your page.</p>
@@ -380,6 +380,7 @@ for (let i = 0; i < buttons.length ; i++) {
             </article>
         </section>
     </main>
+    <script src="pre.js"></script>
 </body>
 
 </html>
