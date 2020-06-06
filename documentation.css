@@ -87,7 +87,6 @@ h2 {
 
 #main-doc {
     margin-left: 350px;
-    min-width: ;
     max-width: 800px;
 }
 
@@ -181,7 +180,7 @@ pre .code::after {
 }
 
 
-/*for tablet*/
+/*for tablets*/
 
 @media only screen and (max-width:815px) {
     body {
@@ -196,5 +195,28 @@ pre .code::after {
     }
     #main-doc {
         margin-left: 220px;
+    }
+}
+
+
+/*for mobile phones*/
+
+@media only screen and (max-width: 400px) {
+    #navbar {
+        position: absolute;
+        height: 280px;
+        width: 100%;
+        z-index: 1;
+    }
+    #navbar header {
+        padding-left: 10px;
+    }
+    #navbar a {
+        padding-left: 10px;
+        font-size: 100%;
+    }
+    #main-doc {
+        position: relative;
+        margin: 290px 10px 10px 10px;
     }
 }
